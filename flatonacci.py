@@ -25,4 +25,18 @@ Note. Please note that we are gonna test the funcion against a lot of different 
 
 def flatonacci(signature: list, n: int) -> list:
     # happy coding
-    pass
+    assert isinstance(signature, list) and len(signature) == 3, " signature should be a list and has at least 3 numbers"
+    assert (n >= 0)
+
+    if n == 0:
+        return list()
+
+    copy_signature = signature.copy()
+    for _ in range(n - len(signature)):
+        new_element = sum([
+            copy_signature[-x]
+            for x in range(1, 4)
+        ])
+        copy_signature.extend([new_element])
+
+    return copy_signature
