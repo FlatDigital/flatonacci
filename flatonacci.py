@@ -24,5 +24,14 @@ Note. Please note that we are gonna test the funcion against a lot of different 
 
 
 def flatonacci(signature: list, n: int) -> list:
-    # happy coding
-    pass
+    if any(filter(lambda x: type(x) != int, signature)) or len(signature) != 3:
+        raise Exception("Signature no valid")
+    elif n < 0:
+        raise Exception("'n' cannot be negative")
+
+    result = signature
+
+    while len(result) < n:
+        result.append(sum(result[-3:]))
+
+    return result[:n]
