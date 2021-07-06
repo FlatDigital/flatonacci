@@ -22,7 +22,52 @@ clearly specified ;)
 Note. Please note that we are gonna test the funcion against a lot of different signatures and n's
 """
 
+SIGNATURE_LENGTH = 3
+
 
 def flatonacci(signature: list, n: int) -> list:
-    # happy coding
-    pass
+    for i in range(n - SIGNATURE_LENGTH):
+        first = signature[i]
+        middle = signature[i + 1]
+        last = signature[i + 2]
+        val = last + middle + first
+        signature.append(val)
+    return signature
+
+
+def read_signature() -> list:
+    count = 1
+    signature = []
+    while count <= SIGNATURE_LENGTH:
+        val = input('Enter seed: ')
+        if not val.isdigit():
+            continue
+        else:
+            val = int(val)
+            signature.append(val)
+            count += 1
+    return signature
+
+
+def run():
+    menu = """
+- Press 0 - to finish
+- Press any key to new flatonacci
+"""
+    option = '1'
+    while option != '0':
+        n = input('Enter number of elements: ')
+        if not n.isdigit():
+            print('Bad Choice!!!: ')
+            option = input(menu)
+        else:
+            n = int(n)
+            signature = read_signature()
+            result = flatonacci(signature, n)
+            print('¡¡¡FLATONACCI!!!')
+            print(result)
+            option = input(menu)
+
+
+if __name__ == '__main__':
+    run()
